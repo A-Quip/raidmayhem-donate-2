@@ -11,11 +11,9 @@ site:
   effects:
     heal: "Heals all runners to full and refills their hunger and saturation."
 
-# Hard caps advertised on the page (count = amount / price, capped at these).
+# Hard cap on mobs advertised on the page (count = amount / price, capped here).
 mobs:
   max-per-donation: 256
-gifts:
-  max-per-donation: 512
 
 # Mobs a donor can summon with MOB:<name>, mapped to cost per mob.
 mob-whitelist:
@@ -66,11 +64,26 @@ mob-whitelist:
   wither: 50.00
 
 # Items a donor can request with ITEM:<name>, mapped to cost per item.
-gifts-whitelist:
-  bread: 0.25
-  emerald: 0.50
-  iron_ingot: 1.00
-  gold_ingot: 1.00
-  diamond: 3.00
-  golden_apple: 10.00
-  totem_of_undying: 25.00
+gifts:
+  # The ONLY items a donor may request with ITEM:<name>, mapped to cost per item in
+  # currency units (count = amount / cost). An ITEM marker naming anything not listed
+  # here is rejected and falls through to donations.default-effect. Keys are item
+  # material names (lowercase, "_" for spaces; e.g. golden_apple).
+  whitelist:
+    iron_ingot: 0.2
+    gold_ingot: 0.2
+    diamond: 0.5
+    emerald: 0.1
+    totem_of_undying: 4.0
+    golden_apple: 2.0
+    golden_carrot: 0.4
+    bread: 0.1
+    oak_log: 0.1
+    experience_bottle: 0.1
+    lapis_lazuli: 0.1
+  # Resource handed to every online target for a keywordless donation when
+  # donations.default-effect is "gift" (the default). Any item material name, priced
+  # from the whitelist above (1.0 if it isn't listed there).
+  default: iron_ingot
+  # Hard cap on items given per single donation (per target).
+  max-per-donation: 512

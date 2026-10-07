@@ -42,7 +42,7 @@ def load():
         tip_url=site.get("tip-url") or DEFAULT_TIP_URL,
         effects=site.get("effects") or {},
         mobs=cfg.get("mob-whitelist") or {},
-        items=cfg.get("gifts-whitelist") or {},
+        items=(cfg.get("gifts") or {}).get("whitelist") or {},
         mob_cap=(cfg.get("mobs") or {}).get("max-per-donation", 256),
         gift_cap=(cfg.get("gifts") or {}).get("max-per-donation", 512),
     )
