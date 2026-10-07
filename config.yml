@@ -1,0 +1,41 @@
+# Prices for the SECOND donate page. This file is standalone — unlike donate-site/,
+# which reads the plugin's config.yml, this page is driven entirely by the values here.
+# Edit prices/markers below (and the site: block), then run build_page.py.
+
+site:
+  # StreamElements (or any) tip page this donate button links to. The channel name
+  # shown on the page is the first path segment of this URL.
+  tip-url: "https://streamelements.com/your_channel/tip"
+  # Amount-independent effects (they fire once, whatever was tipped). Keys must match
+  # the plugin's EFFECT:<name> markers.
+  effects:
+    heal: "Heals all runners to full and refills their hunger and saturation."
+
+# Hard caps advertised on the page (count = amount / price, capped at these).
+mobs:
+  max-per-donation: 256
+gifts:
+  max-per-donation: 512
+
+# Mobs a donor can summon with MOB:<name>, mapped to cost per mob.
+mob-whitelist:
+  llama: 1.00
+  spider: 1.50
+  zombie: 2.00
+  skeleton: 3.00
+  creeper: 3.00
+  enderman: 10.00
+  blaze: 10.00
+  ravager: 25.00
+  warden: 25.00
+  wither: 250.00
+
+# Items a donor can request with ITEM:<name>, mapped to cost per item.
+gifts-whitelist:
+  bread: 0.25
+  emerald: 0.50
+  iron_ingot: 1.00
+  gold_ingot: 1.00
+  diamond: 3.00
+  golden_apple: 10.00
+  totem_of_undying: 25.00
