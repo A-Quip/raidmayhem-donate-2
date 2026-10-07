@@ -6,10 +6,16 @@ site:
   # StreamElements (or any) tip page this donate button links to. The channel name
   # shown on the page is the first path segment of this URL.
   tip-url: "https://streamelements.com/molyhydra/tip"
-  # Amount-independent effects (they fire once, whatever was tipped). Keys must match
-  # the plugin's EFFECT:<name> markers.
+  # EFFECT:<name> descriptions shown on the page. Keys must match the plugin's EFFECT
+  # markers (and the effects: cost map below).
   effects:
     heal: "Heals all runners to full and refills their hunger and saturation."
+
+# Minimum tip (currency units) each EFFECT:<name> costs. The effect only fires on a tip
+# of at least this much, then applies once no matter how far the tip exceeds it. 0 or
+# absent = any tip works.
+effects:
+  heal: 5.00
 
 # Hard cap on mobs advertised on the page (count = amount / price, capped here).
 mobs:

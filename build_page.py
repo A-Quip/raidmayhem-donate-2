@@ -40,7 +40,8 @@ def load():
     site = cfg.get("site") or {}
     return dict(
         tip_url=site.get("tip-url") or DEFAULT_TIP_URL,
-        effects=site.get("effects") or {},
+        effects=site.get("effects") or {},          # name -> description
+        effect_costs=cfg.get("effects") or {},      # name -> minimum tip
         mobs=cfg.get("mob-whitelist") or {},
         items=(cfg.get("gifts") or {}).get("whitelist") or {},
         mob_cap=(cfg.get("mobs") or {}).get("max-per-donation", 256),
@@ -63,14 +64,19 @@ def priced_rows(catalog: dict, kind: str) -> str:
     return "\n  ".join(rows)
 
 
-def effect_rows(effects: dict) -> str:
+def effect_price(cost) -> str:
+    """Effects cost a minimum tip (the effects: map); 0/absent means any tip works."""
+    return money(float(cost)) if isinstance(cost, (int, float)) and cost > 0 else "any tip"
+
+
+def effect_rows(effects: dict, costs: dict) -> str:
     rows = []
     for name, desc in effects.items():
         rows.append(
             f'<tr><td>{html.escape(pretty(name))}</td>'
             f'<td><code>EFFECT:{html.escape(name)}</code></td>'
             f'<td>{html.escape(str(desc))}</td>'
-            f'<td class="num">any tip</td></tr>'
+            f'<td class="num">{effect_price(costs.get(name))}</td></tr>'
         )
     return "\n  ".join(rows)
 
@@ -104,8 +110,9 @@ def build() -> str:
   <h2>How to donate</h2>
   <p>Put a marker in your tip message to choose what to send. The amount sets how many
   (count = amount divided by the price), up to {mob_cap} mobs or {gift_cap} items per tip.
-  Only the first marker in a message counts, so it's one effect per tip; effects fire once
-  no matter the amount. Prices are set by the streamer and may change.</p>
+  Only the first marker in a message counts, so it's one effect per tip; an effect needs a
+  tip of at least its listed price and then fires once (tipping more does nothing extra).
+  Prices are set by the streamer and may change.</p>
   <p>Examples:<br>
   <code>MOB:Enderman</code> sends endermen<br>
   <code>ITEM:Diamond</code> sends diamonds (multi-word names use an underscore, like ITEM:golden_apple)<br>
@@ -141,7 +148,7 @@ def main():
         channel=html.escape(channel_from(data["tip_url"])),
         mob_rows=priced_rows(data["mobs"], "MOB"),
         item_rows=priced_rows(data["items"], "ITEM"),
-        effect_rows=effect_rows(data["effects"]),
+        effect_rows=effect_rows(data["effects"], data["effect_costs"]),
         mob_cap=data["mob_cap"],
         gift_cap=data["gift_cap"],
     )
