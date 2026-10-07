@@ -19,16 +19,51 @@ gifts:
 
 # Mobs a donor can summon with MOB:<name>, mapped to cost per mob.
 mob-whitelist:
-  llama: 1.00
-  spider: 1.50
-  zombie: 2.00
-  skeleton: 3.00
-  creeper: 3.00
-  enderman: 10.00
-  blaze: 10.00
-  ravager: 25.00
-  warden: 25.00
-  wither: 250.00
+  # # Undead
+  zombie: 0.5
+  husk: 1.0
+  drowned: 1.0
+
+  skeleton: 1.5
+  stray: 1.75
+  parched: 1.75
+  bogged: 3.5
+
+  phantom: 2.0
+  large_phantom: 3.0
+  huge_phantom: 4.0
+  # # Arachnid
+  endermite: 0.5
+  spider: .5
+  cave_spider: 1.5
+  silverfish: 0.5
+  # # Other
+  villager: 0.5
+  llama: 0.2
+  goat: 1.0
+  polar_bear: 1.0
+  creeper: 1.5
+  breeze: 2.5
+  enderman: 3.0
+  warden: 4.0
+  # # Illagers
+  pillager: 1.75
+  vindicator: 3.5
+  witch: 4.0
+  illusioner: 3.5
+  evoker: 4.0
+  ravager: 4.5
+  # Nether
+  hoglin: 2.5
+  zoglin: 2.5
+  piglin: 3.5
+  zombified_piglin: 2.0
+  wither_skeleton: 3.0
+  blaze: 4.0
+  ghast: 3.0
+  piglin_brute: 5.0
+  # # Boss
+  wither: 50.00
 
 # Items a donor can request with ITEM:<name>, mapped to cost per item.
 gifts-whitelist:
