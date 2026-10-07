@@ -7,16 +7,16 @@ drift from the values you set.
 - `config.yml` — tip URL, effects, caps, and the mob/item price lists.
 - `build_page.py` — reads `config.yml` and writes `index.html`. Edit `config.yml`, then
   run `python build_page.py`.
-- `index.html` — the generated page (committed so it renders on GitHub without CI).
-- Deployed to GitHub Pages by `.github/workflows/deploy.yml` on every push to `main`.
+- `index.html` — the generated page, committed and served directly by GitHub Pages.
 
-## Setup
+GitHub Pages serves `index.html` straight from the `main` branch (Settings → Pages →
+Source: **Deploy from a branch**, `main` / root).
 
-1. Set `site.tip-url` in `config.yml` to the StreamElements tip page, adjust prices,
-   run `python build_page.py`, commit, push.
-2. In the repo: **Settings → Pages → Build and deployment → Source: GitHub Actions**
-   (only if the workflow's auto-enable didn't already turn it on).
-3. The page publishes to `https://<user>.github.io/raidmayhem-donate-2/`. Put that URL
-   in the chatbot's `!donate` command.
+## Changing prices
 
-Changing a price later = edit `config.yml`, push — the page redeploys itself.
+1. Edit `config.yml` (prices, `site.tip-url`, effects).
+2. Run `python build_page.py` to regenerate `index.html`.
+3. Commit and push both files — Pages republishes the new `index.html` automatically.
+
+The page lives at `https://a-quip.github.io/raidmayhem-donate-2/`. Put that URL in the
+chatbot's `!donate` command.
