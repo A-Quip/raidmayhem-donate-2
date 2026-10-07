@@ -5,7 +5,7 @@
 site:
   # StreamElements (or any) tip page this donate button links to. The channel name
   # shown on the page is the first path segment of this URL.
-  tip-url: "https://streamelements.com/your_channel/tip"
+  tip-url: "https://streamelements.com/molyhydra/tip"
   # Amount-independent effects (they fire once, whatever was tipped). Keys must match
   # the plugin's EFFECT:<name> markers.
   effects:
